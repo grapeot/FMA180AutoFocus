@@ -94,14 +94,16 @@ module dovetail_without_guidescope() {
     translate([body_width/2-5, body_height-27, 0])
     rotate([90, 0, 0])
     vixen_dovetail(body_height-22);
-
 }
 
 module dovetail() {
     epsilon = 0.01;
 
-    body_width = 250-10;
-    body_height = 100-10;
+    body_width = 150-10+90;
+    body_height = 110;
+    body_left = 20;
+    body_fma_left = body_left+90;
+    body_top = 90;
     
     screw_upper_depth = 4;
 
@@ -124,16 +126,16 @@ module dovetail() {
         // EAF holes
         // upper
         hull() {
-            translate([15, 70, 0])
+            translate([body_fma_left, body_top, 0])
             cylinder(r=3+eaf_margin, h=20, center=true, $fn=100);
-            translate([60, 70, 0])
+            translate([body_fma_left+45, body_top, 0])
             cylinder(r=3+eaf_margin, h=20, center=true, $fn=100);
         }
         // lower
         hull() {
-            translate([15, 70, -epsilon])
+            translate([body_fma_left, body_top, -epsilon])
             cylinder(r=5+eaf_margin, h=screw_upper_depth, $fn=100);
-            translate([60, 70, -epsilon])
+            translate([body_fma_left+45, body_top, -epsilon])
             cylinder(r=5+eaf_margin, h=screw_upper_depth, $fn=100);
         }
 
@@ -141,54 +143,54 @@ module dovetail() {
         // left
         // upper
         hull() {
-            translate([100, 70, 0])
+            translate([body_fma_left+85, body_top, 0])
             cylinder(r=2+fma_margin, h=20, center=true, $fn=100);
-            translate([100, 15, 0])
+            translate([body_fma_left+85, 15, 0])
             cylinder(r=2+fma_margin, h=20, center=true, $fn=100);
         }
         // lower
         hull() {
-            translate([100, 70, -epsilon])
+            translate([body_fma_left+85, body_top, -epsilon])
             cylinder(r=3.5+fma_margin, h=screw_upper_depth, $fn=100);
-            translate([100, 15, -epsilon])
+            translate([body_fma_left+85, 15, -epsilon])
             cylinder(r=3.5+fma_margin, h=screw_upper_depth, $fn=100);
         }
         // right
         // upper
         hull() {
-            translate([110, 70, 0])
+            translate([body_fma_left+105, body_top, 0])
             cylinder(r=2+fma_margin, h=20, center=true, $fn=100);
-            translate([110, 15, 0])
+            translate([body_fma_left+105, 15, 0])
             cylinder(r=2+fma_margin, h=20, center=true, $fn=100);
         }
         // lower
         hull() {
-            translate([110, 70, -epsilon])
+            translate([body_fma_left+105, body_top, -epsilon])
             cylinder(r=3.5+fma_margin, h=screw_upper_depth, $fn=100);
-            translate([110, 15, -epsilon])
+            translate([body_fma_left+105, 15, -epsilon])
             cylinder(r=3.5+fma_margin, h=screw_upper_depth, $fn=100);
         }
 
         // Guidescope holes
         // upper
         hull() {
-            translate([220, 70, 0])
+            translate([body_left, 70, 0])
             cylinder(r=2.5+eaf_margin, h=20, center=true, $fn=100);
-            translate([220, 15, 0])
+            translate([body_left, 15, 0])
             cylinder(r=2.5+eaf_margin, h=20, center=true, $fn=100);
         }
         // lower
         hull() {
-            translate([220, 70, -epsilon])
+            translate([body_left, 70, -epsilon])
             cylinder(r=4+eaf_margin, h=screw_upper_depth, $fn=100);
-            translate([220, 15, -epsilon])
+            translate([body_left, 15, -epsilon])
             cylinder(r=4+eaf_margin, h=screw_upper_depth, $fn=100);
         }
     }
 
-    translate([body_width/2+30, body_height+5, 0])
+    translate([body_width/2-5, body_height-27, 0])
     rotate([90, 0, 0])
-    vixen_dovetail(body_height+10);
+    vixen_dovetail(body_height-22);
 }
 
 module washer() {
@@ -202,9 +204,9 @@ module washer() {
 }
 
 rotate([0, 180, 0])
-// dovetail();
 {
-    dovetail_without_guidescope();
+    dovetail();
+    // dovetail_without_guidescope();
     // color([0.5, 1.0, 0.5])
     // translate([25, 87, 15])
     // rotate([90, 0, 0])
