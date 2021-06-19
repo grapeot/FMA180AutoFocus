@@ -188,7 +188,7 @@ module dovetail() {
         }
     }
 
-    translate([body_width/2-5, body_height-27, 0])
+    translate([body_width/2+45, body_height-27, 0])
     rotate([90, 0, 0])
     vixen_dovetail(body_height-22);
 }
@@ -203,15 +203,15 @@ module washer() {
     }
 }
 
-rotate([0, 180, 0])
-{
-    dovetail();
-    // dovetail_without_guidescope();
-    // color([0.5, 1.0, 0.5])
-    // translate([25, 87, 15])
-    // rotate([90, 0, 0])
-    // eaf_rack();
-}
-// for (i = [0: 3])
-//     translate([i*20, 0, 0])
-//     washer();
+// rotate([0, 180, 0])
+// {
+//     dovetail();
+//     // dovetail_without_guidescope();
+//     // color([0.5, 1.0, 0.5])
+//     // translate([25, 87, 15])
+//     // rotate([90, 0, 0])
+//     // eaf_rack();
+// }
+for (i = [0: 3])
+    translate([i*20, 0, 0])
+    washer();
